@@ -17,10 +17,10 @@ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo ap
 
 
 # 3. Install ROS Noetic
-echo "--- Installing R OS Noetic Desktop Full..."
+echo "--- Installing ROS develepment tools and ROS Noetic Desktop Full..."
 sudo apt update
-sudo apt install -y ros-noetic-desktop-full python3-rosdep2 ros-noetic-rosbash
-
+sudo apt install -y ros-noetic-desktop-full
+sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential rviz
 
 # 4. Initialize rosdep
 # echo "--- Initializing rosdep..."
@@ -34,8 +34,6 @@ fi
 source /opt/ros/noetic/setup.bash
 
 # 6. Development tools
-echo "--- Installing ROS development tools..."
-sudo apt install -y python3-rosinstall python3-rosinstall-generator python3-wstool build-essential python3-rosdep python3-catkin-tools rviz
 echo "--- Initializing rosdep..."
 sudo rosdep init
 rosdep update
