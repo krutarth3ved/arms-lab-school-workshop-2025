@@ -1,3 +1,4 @@
+source ~/.bashrc
 echo "download package dependencies"
 sudo apt-get install ros-noetic-gazebo-plugins ros-noetic-gazebo-ros-control
 
@@ -30,8 +31,8 @@ chmod +x hector-quadrotor-noetic/hector_ui/src/z_pid_gui.py
 # 3. Install missing dependencies
 echo "--- Installing dependencies using rosdep..."
 cd ~/catkin_ws
-rosdep update
-rosdep install --from-paths src --ignore-src -r -y
+#rosdep update
+#rosdep install --from-paths src --ignore-src -r -y
 
 # 4. Build the workspace
 echo "--- Building workspace..."
@@ -44,15 +45,15 @@ source devel/setup.bash
 # 6. Install GUI tools
 echo "--- Installing RQT GUI tools..."
 sudo apt update
-sudo apt install -y ros-noetic-rqt-reconfigure
+#sudo apt install -y ros-noetic-rqt-reconfigure
 
 # 7. Launch Simulation and Tools
 echo "--- Launching simulation and GUI tools..."
 
-gnome-terminal --title="Gazebo Drone Sim" -- bash -c "source ~/.bashrc && roslaunch hector_quadrotor_demo indoor_slam_gazebo.launch"
+gnome-terminal --title="Gazebo Drone Sim" -- bash -c "source ~/.bashrc && roslaunch hector_quadrotor_gazebo quadrotor_empty_world.launch"
 sleep 10
 
-gnome-terminal --title="RQT Reconfigure" -- bash -c "source ~/.bashrc && rosrun rqt_reconfigure rqt_reconfigure"
+#gnome-terminal --title="RQT Reconfigure" -- bash -c "source ~/.bashrc && rosrun rqt_reconfigure rqt_reconfigure"
 
 echo ""
 echo "=== Setup Complete ==="
