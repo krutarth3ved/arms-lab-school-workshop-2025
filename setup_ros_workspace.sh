@@ -12,17 +12,20 @@ sudo apt install -y curl gnupg lsb-release
 # 2. ROS repository and keys
 echo "--- Adding ROS repository and keys..."
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-curl -sSL http://packages.ros.org/ros.key | sudo apt-key add -
+sudo apt install curl # if you haven't already installed curl
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+
 
 # 3. Install ROS Noetic
-echo "--- Installing ROS Noetic Desktop Full..."
+echo "--- Installing R OS Noetic Desktop Full..."
 sudo apt update
-sudo apt install -y ros-noetic-desktop-full
+sudo apt install -y ros-noetic-desktop-full python3-rosdep2 ros-noetic-rosbash
+
 
 # 4. Initialize rosdep
-echo "--- Initializing rosdep..."
-sudo rosdep init || echo "rosdep already initialized"
-rosdep update
+# echo "--- Initializing rosdep..."
+# sudo rosdep init || echo "rosdep already initialized"
+# rosdep update
 
 # 5. Bashrc configuration for ROS
 if ! grep -Fxq "source /opt/ros/noetic/setup.bash" ~/.bashrc; then
@@ -32,7 +35,10 @@ source /opt/ros/noetic/setup.bash
 
 # 6. Development tools
 echo "--- Installing ROS development tools..."
-sudo apt install -y python3-rosinstall python3-rosinstall-generator python3-wstool build-essential python3-rosdep python3-catkin-tools
+sudo apt install -y python3-rosinstall python3-rosinstall-generator python3-wstool build-essential python3-rosdep python3-catkin-tools rviz
+echo "--- Initializing rosdep..."
+sudo rosdep init
+rosdep update
 
 # 7. Catkin workspace setup
 echo "--- Creating catkin workspace..."
@@ -48,7 +54,7 @@ source ~/catkin_ws/devel/setup.bash
 # 8. TurtleBot3 and Gazebo packages
 echo "--- Installing TurtleBot3 and simulation packages..."
 sudo apt install -y ros-noetic-turtlebot3 ros-noetic-turtlebot3-simulations
-
+#sudo apt-get install ros-noetic-gazebo-plugins
 # 9. TurtleBot3 model
 if ! grep -Fxq "export TURTLEBOT3_MODEL=burger" ~/.bashrc; then
   echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
