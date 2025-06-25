@@ -1,6 +1,7 @@
 echo "download package dependencies"
 sudo apt-get install ros-noetic-gazebo-plugins ros-noetic-gazebo-ros-control
 
+
 echo "=== Drone Hover Demo (hector_quadrotor) Setup Script ==="
 
 # Set your GitHub source URL here
@@ -22,6 +23,9 @@ echo "--- Building workspace..."
 catkin_make
 cd ~/catkin_ws/src
 git clone "$HECTOR_REPO_URL"
+git clone "https://github.com/krutarth3ved/arms-lab-school-workshop-2025.git"
+cp arms-lab-school-workshop-2025/z_pid_gui.py hector-quadrotor-noetic/hector_ui/src/
+chmod +x hector-quadrotor-noetic/hector_ui/src/z_pid_gui.py
 
 # 3. Install missing dependencies
 echo "--- Installing dependencies using rosdep..."
