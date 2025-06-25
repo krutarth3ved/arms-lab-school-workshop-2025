@@ -1,15 +1,20 @@
+echo "download package dependencies"
+sudo apt-get install ros-noetic-gazebo-plugins ros-noetic-gazebo-ros-control
+
 echo "=== Drone Hover Demo (hector_quadrotor) Setup Script ==="
 
 # Set your GitHub source URL here
 HECTOR_REPO_URL="https://github.com/RAFALAMAO/hector-quadrotor-noetic.git"
 GEO_INFO_REPO_URL="https://github.com/ros-geographic-info/geographic_info.git"
 UUID_REPO_URL="https://github.com/ros-geographic-info/unique_identifier.git"
+TELEOP_URL="https://github.com/ros-teleop/teleop_twist_keyboard.git"
 
 # 1. Clone hector_quadrotor packages
 cd ~/catkin_ws/src
 echo "--- Cloning hector_quadrotor from GitHub..."
 git clone "$GEO_INFO_REPO_URL"
 git clone "$UUID_REPO_URL"
+git clone "$TELEOP_URL"
 
 # Build the workspace
 cd ~/catkin_ws
@@ -30,6 +35,7 @@ catkin_make
 
 # 5. Source setup.bash
 source ~/.bashrc
+source devel/setup.bash
 
 # 6. Install GUI tools
 echo "--- Installing RQT GUI tools..."
