@@ -25,6 +25,8 @@ catkin_make
 cd ~/catkin_ws/src
 git clone "$HECTOR_REPO_URL"
 git clone "https://github.com/krutarth3ved/arms-lab-school-workshop-2025.git"
+mv arms-lab-school-workshop-2025/workshop/ ./workshop
+chmod +x workshop/src/scripts/*.py
 cp arms-lab-school-workshop-2025/z_pid_gui.py hector-quadrotor-noetic/hector_ui/src/
 chmod +x hector-quadrotor-noetic/hector_ui/src/z_pid_gui.py
 
